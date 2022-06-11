@@ -8,8 +8,12 @@
     "develop": "cross-env FORCE_COLOR=1 npm-run-all -l -p develop:*"
   },
   "devDependencies": {
+    "cross-env": "7.0.3",
     "npm-run-all": "4.1.5",
-    "wait-on": "5.2.1",
-    "cross-env": "7.0.3"
-  }
+    "wait-on": "5.2.1"
+  },
+  "main": "index.js",
+  "repository": "https://github.com/nodes777/strapi-gatsby-v4.git",
+  "author": "nodes777 <nodes777@gmail.com>",
+  "license": "MIT"
 }
