@@ -23,6 +23,7 @@ const Block = ({ block }) => {
 };
 
 const BlocksRenderer = ({ blocks }) => {
+  console.log(blocks);
   return (
     <div>
       {blocks.map((block, index) => (

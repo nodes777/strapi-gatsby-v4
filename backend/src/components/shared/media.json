@@ -19,9 +19,6 @@
     },
     "Text": {
       "type": "richtext"
-    },
-    "asd": {
-      "type": "string"
     }
   }
 }

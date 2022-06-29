@@ -1,21 +1,21 @@
-import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
+import { graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+
+import { Block, BlockTypes, isMedia } from "../types";
 import Seo from "../components/seo";
 import BlocksRenderer from "../components/blocks-renderer";
 import Headings from "../components/headings";
 import LayoutRoot from "../components/layout";
+
 import * as styles from "../styles/about.module.css";
 
-// interface AboutProps {
-//   data: { file: { childImageSharp: { fluid: any } } };
-// }
-//const about: React.FC<AboutProps> = ({ data }) => {
 interface AboutQueryResponse {
-  strapiAbout: { title: string; blocks: any[] };
+  strapiAbout: { title: string; blocks: Block[] };
 }
 
 const about: React.FC = () => {
+  // TODO: get image from strapiAbout more specifically
   const { strapiAbout } = useStaticQuery<AboutQueryResponse>(graphql`
     query {
       strapiAbout {
@@ -33,6 +33,11 @@ const about: React.FC = () => {
     metaTitle: title,
     metaDescription: title,
   };
+
+  const imageBlock = blocks.find(isMedia);
+  console.log(imageBlock);
+
+  const profilePic = imageBlock && getImage(imageBlock.file.localFile);
   return (
     <LayoutRoot>
       <Seo seo={seo} />
@@ -43,11 +48,9 @@ const about: React.FC = () => {
         <div className={styles.titleContainer}>
           <div className={styles.emptyDiv}></div>
           <div className={styles.imageContainer}>
-            {/* <GatsbyImage
-              image={data.file.childImageSharp.fluid}
-              //  image={getImage(article?.cover?.localFile)}
-              alt="Taylor as a dog avatar"
-            /> */}
+            {profilePic ? (
+              <GatsbyImage image={profilePic} alt="Taylor as a dog avatar" />
+            ) : null}
           </div>
           <div className={styles.taylorContainer}>
             <h2>Taylor</h2>
